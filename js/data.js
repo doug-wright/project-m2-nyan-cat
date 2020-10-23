@@ -20,3 +20,6 @@ const PLAYER_HEIGHT = 193;
 
 // Number of lives
 const EXTRA_LIVES = 2;
+
+// Free lives
+const FREE_LIFE = 5000;

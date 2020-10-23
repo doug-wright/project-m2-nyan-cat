@@ -36,15 +36,21 @@ class Engine {
     this.gameOver = new Text(this.root, 60, 300, '80px');
   }
 
+  // set up sounds
+  sndMusic = new sound('sounds/music.mp3');
+  sndExplosion = new sound('sounds/explosion.wav');
+  sndGameOver = new sound('sounds/game-over.wav');
+  sndFreeLife = new sound('sounds/free-life.wav');
+
   // The gameLoop will run every few milliseconds. It does several things
   //  - Updates the enemy positions
   //  - Detects a collision between the player and any enemy
   //  - Removes enemies that are too low from the enemies array
 
-  explosionSound = new sound();
 
   gameLoop = () => {
     if (this.countDown < 1) {
+      this.sndMusic.play();
       document.addEventListener('keydown', keydownHandler);
 
       // restore enterprise image after explosion
@@ -91,11 +97,15 @@ class Engine {
         // change the player image to an explosion and play sound
         this.player.domElement.src = 'images/explosion.gif';
         this.player.domElement.style.left = this.player.x - 60;
-        this.explosionSound.play();
+        this.sndExplosion.play();
 
         // check how many lives are remaining
         if (this.player.livesRemaining === 0) {
-          this.gameOver.update('Game Over');
+          setTimeout(() => {
+            this.sndMusic.stop();
+            this.sndGameOver.play();
+            this.gameOver.update('Game Over');
+          }, 2500);
           return;
         } else {
           this.player.livesRemaining--;
@@ -110,8 +120,9 @@ class Engine {
       this.score++;
       this.scoreBoard.update(this.score);
 
-      // every 5000 points add a free life
-      if (this.score % 5000 === 0) {
+      // check for free life
+      if (this.score % FREE_LIFE === 0) {
+        this.sndFreeLife.play();
         this.player.livesRemaining++;
         this.showLives.update(this.player.livesRemaining.toString().padStart(2, '0'));
       }

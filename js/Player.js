@@ -1,5 +1,6 @@
 // There will only be one instance of this class. This instance will contain the
 // data and methods related to the burger that moves at the bottom of your screen
+
 class Player {
   // The constructor takes one parameter. This parameter refers to the parent DOM node.
   // We will be adding a DOM element to this parent DOM node.
@@ -27,11 +28,15 @@ class Player {
     root.appendChild(this.domElement);
   }
 
+  sndMove = new sound('sounds/move.wav');
+
   // This method will be called when the user presses the left key. See in Engine.js
   // how we relate the key presses to this method
   moveLeft() {
     if (this.x > 0) {
       this.x = this.x - PLAYER_WIDTH;
+      this.sndMove.play();
+      this.snd
     }
 
     this.domElement.style.left = `${this.x}px`;
@@ -41,6 +46,7 @@ class Player {
   moveRight() {
     if (this.x + PLAYER_WIDTH < GAME_WIDTH) {
       this.x = this.x + PLAYER_WIDTH;
+      this.sndMove.play();
     }
     this.domElement.style.left = `${this.x}px`;
   }

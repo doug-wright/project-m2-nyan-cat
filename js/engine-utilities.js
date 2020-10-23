@@ -72,9 +72,9 @@ const addBackground = (root) => {
 
 // create explosion sound class
 class sound {
-  constructor() {
+  constructor(src) {
     this.sound = document.createElement("audio");
-    this.sound.src = 'sounds/explosion.wav';
+    this.sound.src = src;
     this.sound.setAttribute("preload", "auto");
     this.sound.setAttribute("controls", "none");
     this.sound.style.display = "none";
