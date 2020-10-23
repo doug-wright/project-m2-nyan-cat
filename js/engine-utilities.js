@@ -4,6 +4,11 @@
 // Enemy class. To get more information about the argument that will get passed to this function,
 // please see the Engine.js file.
 
+// remove body margin
+body = document.querySelector('body');
+body.style.margin = 0;
+body.style.overflowX = 'hidden';
+
 // The purpose of this function is to determine in which slot to place our next enemy.
 // The possibilities are 0, 1, 2, 3 or 4.
 const nextEnemySpot = (enemies) => {
@@ -64,3 +69,21 @@ const addBackground = (root) => {
   whiteBox.style.background = '#fff';
   root.append(whiteBox);
 };
+
+// create explosion sound class
+class sound {
+  constructor() {
+    this.sound = document.createElement("audio");
+    this.sound.src = 'sounds/explosion.wav';
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function () {
+      this.sound.play();
+    };
+    this.stop = function () {
+      this.sound.pause();
+    };
+  }
+}

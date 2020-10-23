@@ -13,10 +13,13 @@ class Player {
     // hamburger. The y position is the distance from the top margin of the browsing area.
     const y = GAME_HEIGHT - PLAYER_HEIGHT - 10;
 
+    // Lives
+    this.livesRemaining = EXTRA_LIVES;
+
     // We create a DOM node. We will be updating the DOM node every time we move the player, so we store a reference to the
     // DOM node in a property.
     this.domElement = document.createElement('img');
-    this.domElement.src = 'images/player.png';
+    this.domElement.src = 'images/enterprise.png';
     this.domElement.style.position = 'absolute';
     this.domElement.style.left = `${this.x}px`;
     this.domElement.style.top = ` ${y}px`;

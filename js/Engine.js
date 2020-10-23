@@ -16,58 +16,126 @@ class Engine {
     this.enemies = [];
     // We add the background image to the game
     addBackground(this.root);
+
+    // setup the scoreboard
+    this.score = 0;
+    this.scoreBoard = new Text(this.root, 20, 20, '60px');
+    this.scoreBoard.update(this.score);
+
+    // setup lives indicator
+    this.showLives = new Text(this.root, 350, 20, '60px');
+    this.showLives.update(this.player.livesRemaining.toString().padStart(2, '0'));
+
+    // setup count down timer container
+    this.countDownCtn = new Text(this.root, 120, 200, '60px');
+
+    // initialize count down timer
+    this.countDown = 150;
+
+    // setup game over indicator
+    this.gameOver = new Text(this.root, 60, 300, '80px');
   }
 
   // The gameLoop will run every few milliseconds. It does several things
   //  - Updates the enemy positions
   //  - Detects a collision between the player and any enemy
   //  - Removes enemies that are too low from the enemies array
+
+  explosionSound = new sound();
+
   gameLoop = () => {
-    // This code is to see how much time, in milliseconds, has elapsed since the last
-    // time this method was called.
-    // (new Date).getTime() evaluates to the number of milliseconds since January 1st, 1970 at midnight.
-    if (this.lastFrame === undefined) {
+    if (this.countDown < 1) {
+      document.addEventListener('keydown', keydownHandler);
+
+      // restore enterprise image after explosion
+      if (this.player.domElement.src !== 'images/enterprise.png') {
+        this.player.domElement.src = 'images/enterprise.png';
+        this.player.domElement.style.left = this.player.x;
+      }
+
+      this.countDownCtn.update('');
+      // This code is to see how much time, in milliseconds, has elapsed since the last
+      // time this method was called.
+      // (new Date).getTime() evaluates to the number of milliseconds since January 1st, 1970 at midnight.
+      if (this.lastFrame === undefined) {
+        this.lastFrame = new Date().getTime();
+      }
+
+      let timeDiff = new Date().getTime() - this.lastFrame;
+
       this.lastFrame = new Date().getTime();
+      // We use the number of milliseconds since the last call to gameLoop to update the enemy positions.
+      // Furthermore, if any enemy is below the bottom of our game, its destroyed property will be set. (See Enemy.js)
+      this.enemies.forEach((enemy) => {
+        enemy.update(timeDiff);
+      });
+
+      // We remove all the destroyed enemies from the array referred to by \`this.enemies\`.
+      // We use filter to accomplish this.
+      // Remember: this.enemies only contains instances of the Enemy class.
+      this.enemies = this.enemies.filter((enemy) => {
+        return !enemy.destroyed;
+      });
+
+      // We need to perform the addition of enemies until we have enough enemies.
+      while (this.enemies.length < MAX_ENEMIES) {
+        // We find the next available spot and, using this spot, we create an enemy.
+        // We add this enemy to the enemies array
+        const spot = nextEnemySpot(this.enemies);
+        this.enemies.push(new Enemy(this.root, spot));
+      }
+
+      // We check if the player is dead. If he is, we alert the user
+      // and return from the method (Why is the return statement important?)
+      if (this.isPlayerDead()) {
+        // change the player image to an explosion and play sound
+        this.player.domElement.src = 'images/explosion.gif';
+        this.player.domElement.style.left = this.player.x - 60;
+        this.explosionSound.play();
+
+        // check how many lives are remaining
+        if (this.player.livesRemaining === 0) {
+          this.gameOver.update('Game Over');
+          return;
+        } else {
+          this.player.livesRemaining--;
+          this.showLives.update(this.player.livesRemaining.toString().padStart(2, '0'));
+        }
+      }
+
+      // If the player is not dead, then we put a setTimeout to run the gameLoop in 20 milliseconds
+      setTimeout(this.gameLoop, 20);
+
+      // update the score
+      this.score++;
+      this.scoreBoard.update(this.score);
+
+      // every 5000 points add a free life
+      if (this.score % 5000 === 0) {
+        this.player.livesRemaining++;
+        this.showLives.update(this.player.livesRemaining.toString().padStart(2, '0'));
+      }
+
+    } else {
+      this.countDown--;
+      this.countDownCtn.update('Ready... ' + Math.round(this.countDown / 50));
+      setTimeout(this.gameLoop, 20);
     }
-
-    let timeDiff = new Date().getTime() - this.lastFrame;
-
-    this.lastFrame = new Date().getTime();
-    // We use the number of milliseconds since the last call to gameLoop to update the enemy positions.
-    // Furthermore, if any enemy is below the bottom of our game, its destroyed property will be set. (See Enemy.js)
-    this.enemies.forEach((enemy) => {
-      enemy.update(timeDiff);
-    });
-
-    // We remove all the destroyed enemies from the array referred to by \`this.enemies\`.
-    // We use filter to accomplish this.
-    // Remember: this.enemies only contains instances of the Enemy class.
-    this.enemies = this.enemies.filter((enemy) => {
-      return !enemy.destroyed;
-    });
-
-    // We need to perform the addition of enemies until we have enough enemies.
-    while (this.enemies.length < MAX_ENEMIES) {
-      // We find the next available spot and, using this spot, we create an enemy.
-      // We add this enemy to the enemies array
-      const spot = nextEnemySpot(this.enemies);
-      this.enemies.push(new Enemy(this.root, spot));
-    }
-
-    // We check if the player is dead. If he is, we alert the user
-    // and return from the method (Why is the return statement important?)
-    if (this.isPlayerDead()) {
-      window.alert('Game over');
-      return;
-    }
-
-    // If the player is not dead, then we put a setTimeout to run the gameLoop in 20 milliseconds
-    setTimeout(this.gameLoop, 20);
   };
 
-  // This method is not implemented correctly, which is why
-  // the burger never dies. In your exercises you will fix this method.
+  // The player is dead if a collision occurs
   isPlayerDead = () => {
-    return false;
-  };
+    let isDead = false;
+
+    // loop through all the enemies and compare their positions with the player
+    this.enemies.forEach(enemy => {
+      if ((enemy.y > 380 && enemy.y < 630) && (enemy.x === this.player.x)) {
+        document.removeEventListener('keydown', keydownHandler);
+        isDead = true;
+        this.countDown = 150;
+      }
+    });
+
+    return isDead;
+  }
 }
