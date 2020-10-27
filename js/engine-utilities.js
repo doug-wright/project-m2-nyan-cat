@@ -80,7 +80,7 @@ const createStartBtn = () => {
   startBtn.style.display = 'inline';
   startBtn.style.position = 'absolute';
   startBtn.style.top = '300px';
-  startBtn.style.left = '95px';
+  startBtn.style.left = GAME_WIDTH / 2 - 120;
   startBtn.style.color = '#23f502';
   startBtn.style.fontFamily = 'ZCOOL QingKe HuangYou, cursive';
   startBtn.style.textShadow = '2px 2px 2px black'

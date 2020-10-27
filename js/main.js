@@ -19,13 +19,14 @@ class sound {
 }
 
 // set up sounds
-sndMusic = new sound('sounds/music.mp3');
+sndMusic = new sound('sounds/music2.mp3');
 sndExplosion = new sound('sounds/explosion.wav');
 sndGameOver = new sound('sounds/game-over.wav');
 sndFreeLife = new sound('sounds/free-life.wav');
 sndShields = new sound('sounds/shields.wav');
 sndShieldsUp = new sound('sounds/shields-up.wav');
 sndShieldWarn = new sound('sounds/shield-warning.wav');
+sndShieldedPoints = new sound('sounds/shielded-points.wav');
 
 // We create an instance of the Engine class. Looking at our index.html,
 // we see that it has a div with an id of `"app"`
