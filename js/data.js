@@ -23,3 +23,7 @@ const EXTRA_LIVES = 2;
 
 // Free lives
 const FREE_LIFE = 5000;
+
+// shield properties
+const SHIELDS = 2000;
+const SHIELD_TIME = 1000;

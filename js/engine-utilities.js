@@ -12,6 +12,7 @@ body.style.overflowX = 'hidden';
 // The purpose of this function is to determine in which slot to place our next enemy.
 // The possibilities are 0, 1, 2, 3 or 4.
 const nextEnemySpot = (enemies) => {
+
   // enemySpots will refer to the number of spots available (can you calculate it?)
   const enemySpots = GAME_WIDTH / ENEMY_WIDTH;
 
@@ -70,20 +71,25 @@ const addBackground = (root) => {
   root.append(whiteBox);
 };
 
-// create explosion sound class
-class sound {
-  constructor(src) {
-    this.sound = document.createElement("audio");
-    this.sound.src = src;
-    this.sound.setAttribute("preload", "auto");
-    this.sound.setAttribute("controls", "none");
-    this.sound.style.display = "none";
-    document.body.appendChild(this.sound);
-    this.play = function () {
-      this.sound.play();
-    };
-    this.stop = function () {
-      this.sound.pause();
-    };
-  }
+// The purpose of the start button is to force the user to interact with the document after it's
+// loaded. If this does not occur then the sound effects will not play.
+const createStartBtn = () => {
+  const startBtn = document.createElement('div');
+  startBtn.className = 'start-btn';
+  startBtn.innerText = 'Start Game';
+  startBtn.style.display = 'inline';
+  startBtn.style.position = 'absolute';
+  startBtn.style.top = '300px';
+  startBtn.style.left = '95px';
+  startBtn.style.color = '#23f502';
+  startBtn.style.fontFamily = 'ZCOOL QingKe HuangYou, cursive';
+  startBtn.style.textShadow = '2px 2px 2px black'
+  startBtn.style.fontSize = '3rem';
+  startBtn.style.border = '5px solid #23f502';
+  startBtn.style.borderRadius = '7px';
+  startBtn.style.boxShadow = '2px 2px 2px black'
+  startBtn.style.padding = '10px 20px 10px 20px';
+  startBtn.style.cursor = 'pointer';
+  gameEngine.root.append(startBtn);
+  startBtn.addEventListener('click', gameEngine.gameLoop);
 }

@@ -1,3 +1,32 @@
+// create sound class
+class sound {
+  constructor(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+
+    this.play = () => {
+      this.sound.play();
+    };
+
+    this.stop = () => {
+      this.sound.pause();
+    };
+  }
+}
+
+// set up sounds
+sndMusic = new sound('sounds/music.mp3');
+sndExplosion = new sound('sounds/explosion.wav');
+sndGameOver = new sound('sounds/game-over.wav');
+sndFreeLife = new sound('sounds/free-life.wav');
+sndShields = new sound('sounds/shields.wav');
+sndShieldsUp = new sound('sounds/shields-up.wav');
+sndShieldWarn = new sound('sounds/shield-warning.wav');
+
 // We create an instance of the Engine class. Looking at our index.html,
 // we see that it has a div with an id of `"app"`
 const gameEngine = new Engine(document.getElementById('app'));

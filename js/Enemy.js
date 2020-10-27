@@ -9,7 +9,7 @@ class Enemy {
   // Since the constructor takes 2 parameters
   // and the 2 parameters provide important information, we must supply 2 arguments to "new" every time we
   // create an instance of this class.
-  constructor(theRoot, enemySpot) {
+  constructor(theRoot, enemySpot, shieldProvider) {
     // When we create an Enemy instance, for example, new Enemy(someRoot, 3)
     // A new object is created and the constructor of the Enemy class is called. The context (the \`this\` keyword) is going
     // to be the new object. In these lines of code we see how to add 2 properties to this object: spot, root and gameHeight.
@@ -18,6 +18,10 @@ class Enemy {
     // - We need to keep track of the enemy spot so that we don't place two enemies in the same spot.
     this.root = theRoot;
     this.spot = enemySpot;
+
+    // This property defines if the enemy ship, when it comes in contact with the player, will
+    // provide the player with shields.
+    this.shieldProvider = shieldProvider;
 
     // The x position of the enemy is determined by its width and its spot. We need this information for the lifetime
     // of the instance, so we make it a property of the instance. (Why is this information needed for the lifetime of the instance?)
@@ -36,7 +40,12 @@ class Enemy {
     this.domElement = document.createElement('img');
 
     // We give it a src attribute to specify which image to display.
-    this.domElement.src = './images/D7.png';
+    if (this.shieldProvider) {
+      this.domElement.src = './images/D7-shields.png';
+    } else {
+      this.domElement.src = './images/D7.png';
+    }
+    
     // We modify the CSS style of the DOM node.
     this.domElement.style.position = 'absolute';
     this.domElement.style.left = `${this.x}px`;
