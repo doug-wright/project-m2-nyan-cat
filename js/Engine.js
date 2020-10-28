@@ -35,6 +35,7 @@ class Engine {
     // setup game over indicator
     this.gameOver = new Text(this.root, GAME_WIDTH / 2 - 145, 300, '80px');
 
+    // other game play variables
     this.gameRunning = false;
     this.offerShields = false;
     this.colInProgress = false;
@@ -51,8 +52,7 @@ class Engine {
 
   gameLoop = () => {
     if (!this.gameRunning) {
-      // create the start game button
-      createStartBtn();
+      createStartBtn();  // create the start game button
       this.gameRunning = true;  
     } else {
       // remove the start game button
@@ -71,6 +71,7 @@ class Engine {
         }
 
         this.countDownCtn.update('');
+
         // This code is to see how much time, in milliseconds, has elapsed since the last
         // time this method was called.
         // (new Date).getTime() evaluates to the number of milliseconds since January 1st, 1970 at midnight.
@@ -132,7 +133,7 @@ class Engine {
           }
         }
 
-        // if the player has shields has the timer expired?
+        // if the player currently has shields has the timer expired?
         if (this.player.hasShields) {
           this.player.shieldTimer--;
 
@@ -166,27 +167,9 @@ class Engine {
     let isDead = false;
 
     // loop through all the enemies and compare their positions with the player
-    // this.enemies.forEach(enemy => {
-    //   if ((enemy.y > 380 && enemy.y < 630) && (enemy.x === this.player.x) && !this.player.hasShields) {
-
-    //     if (enemy.shieldProvider) {
-    //       this.player.hasShields = true;
-    //       this.player.domElement.src = 'images/enterprise-shields.png';
-    //       sndShieldsUp.play();
-    //       this.player.shieldTimer = SHIELD_TIME;
-    //     } else {
-    //       document.removeEventListener('keydown', keydownHandler);
-    //       isDead = true;
-    //       this.player.hasShields = false;
-    //       this.countDown = 150;
-    //     }
-    //   }
-    // });
-
-    // this.colInProgress = false;
     this.colDetect = false;
     this.enemies.forEach(enemy => {
-      if (enemy.y > 380 && enemy.y < 630 && enemy.x === this.player.x) {
+      if (enemy.y > COL_START && enemy.y < COL_END && enemy.x === this.player.x) {
         this.colDetect = true;
         isDead = this.processCollision(enemy);
       }
@@ -237,12 +220,12 @@ class Engine {
         this.player.domElement.src = 'images/enterprise-shields.png';
         sndShieldsUp.play();
         this.player.shieldTimer = SHIELD_TIME;
-        return false;
+        return false;  // Player is alive
       } else {
         document.removeEventListener('keydown', keydownHandler);
         this.player.hasShields = false;
         this.countDown = 150;
-        return true;
+        return true;  // Player is dead
       }
     }
   }

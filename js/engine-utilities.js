@@ -4,15 +4,14 @@
 // Enemy class. To get more information about the argument that will get passed to this function,
 // please see the Engine.js file.
 
-// remove body margin
+// remove body margin and horizontal scrollbar
 body = document.querySelector('body');
 body.style.margin = 0;
 body.style.overflowX = 'hidden';
 
 // The purpose of this function is to determine in which slot to place our next enemy.
-// The possibilities are 0, 1, 2, 3 or 4.
+// The possibilities are GAME_WIDTH / ENEMY_WIDTH = slots.
 const nextEnemySpot = (enemies) => {
-
   // enemySpots will refer to the number of spots available (can you calculate it?)
   const enemySpots = GAME_WIDTH / ENEMY_WIDTH;
 
@@ -22,7 +21,14 @@ const nextEnemySpot = (enemies) => {
   // We then use forEach to iterate through all the enemies.
   // If you look at the constructor of the Enemy class, you can see that every instance will have a spot property.
   // We can use this property to modify the spotsTaken array.
-  const spotsTaken = [false, false, false, false, false];
+  
+  // Corrected for a configurable number of spotsTaken
+  // const spotsTaken = [false, false, false, false, false];
+  let spotsTaken = [];
+  for (let i = 0; i < enemySpots; i++) {
+    spotsTaken.push(false);
+  }
+
   enemies.forEach((enemy) => {
     spotsTaken[enemy.spot] = true;
   });

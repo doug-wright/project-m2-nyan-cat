@@ -1,4 +1,4 @@
-// create sound class
+// Create sound class.  Function borrowed from w3shools and converted to a class.
 class sound {
   constructor(src) {
     this.sound = document.createElement("audio");
@@ -23,10 +23,10 @@ sndMusic = new sound('sounds/music.mp3');
 sndExplosion = new sound('sounds/explosion.wav');
 sndGameOver = new sound('sounds/game-over.wav');
 sndFreeLife = new sound('sounds/free-life.wav');
-sndShields = new sound('sounds/shields.wav');
-sndShieldsUp = new sound('sounds/shields-up.wav');
-sndShieldWarn = new sound('sounds/shield-warning.wav');
-sndShieldedPoints = new sound('sounds/shielded-points.wav');
+sndShields = new sound('sounds/shields.wav');  // The sound made when shields are on offer
+sndShieldsUp = new sound('sounds/shields-up.wav');  // Player obtained shields
+sndShieldWarn = new sound('sounds/shield-warning.wav');  // Shields about to expire
+sndShieldedPoints = new sound('sounds/shielded-points.wav');  // Collided with enemey while shields up
 
 // We create an instance of the Engine class. Looking at our index.html,
 // we see that it has a div with an id of `"app"`

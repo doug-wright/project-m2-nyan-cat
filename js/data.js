@@ -18,13 +18,19 @@ const MAX_ENEMIES = 5;
 const PLAYER_WIDTH = 85;
 const PLAYER_HEIGHT = 193;
 
-// Number of lives
+// Number of extra lives
 const EXTRA_LIVES = 2;
 
-// Free lives
+// Free life
 const FREE_LIFE = 10000;
 
 // shield properties
-const SHIELD_INTERVAL = 1250;
-const SHIELD_TIME = 750;
-const SHIELDED_POINTS = 300;
+const SHIELD_INTERVAL = 1250;  // Obtain shields is offered every n points
+const SHIELD_TIME = 750;  // How long shields are active
+const SHIELDED_POINTS = 300;  // Bonus points for colliding with enemy with sheilds up
+
+// This denotes the range of enemy y positions that is considered a collision.  Decreasing
+// COL_END makes it easier to slip between two closely spaced enemies.  Don't touch
+// COL_START as this equals the front edge of your ship.
+const COL_START = 380;
+const COL_END = 600;
