@@ -33,7 +33,7 @@ class Player {
     root.appendChild(this.domElement);
   }
 
-  sndMove = new sound('sounds/move2.wav');
+  sndMove = new sound('sounds/move.wav');
 
   // This method will be called when the user presses the left key. See in Engine.js
   // how we relate the key presses to this method

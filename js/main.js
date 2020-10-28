@@ -19,7 +19,7 @@ class sound {
 }
 
 // set up sounds
-sndMusic = new sound('sounds/music2.mp3');
+sndMusic = new sound('sounds/music.mp3');
 sndExplosion = new sound('sounds/explosion.wav');
 sndGameOver = new sound('sounds/game-over.wav');
 sndFreeLife = new sound('sounds/free-life.wav');
