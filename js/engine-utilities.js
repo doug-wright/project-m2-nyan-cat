@@ -81,21 +81,29 @@ const addBackground = (root) => {
 // loaded. If this does not occur then the sound effects will not play.
 const createStartBtn = () => {
   const startBtn = document.createElement('div');
+  const divWidth = Math.round(GAME_WIDTH * 0.5);
   startBtn.className = 'start-btn';
-  startBtn.innerText = 'Start Game';
-  startBtn.style.display = 'inline';
+  startBtn.innerHTML = 'Using the left and right arrow keys, avoid the enemy ships. \
+    <p>Capture the yellow ship to obtain shields.</p> \
+    <p>With shields up (indicated by a red outline around your ship) collide with \
+    enemy ships to collect bonus points. An alarm will sound when your shields are \
+    about to run out.</p><p>You get a free life every 10,000 points.</p> \
+    <div style="text-align: center;">CLICK HERE TO START</div>';
   startBtn.style.position = 'absolute';
-  startBtn.style.top = '300px';
-  startBtn.style.left = GAME_WIDTH / 2 - 120;
+  startBtn.style.top = '120px';
+  startBtn.style.width = divWidth + 'px';
+  startBtn.style.left = GAME_WIDTH / 2 - 175;
   startBtn.style.color = '#23f502';
   startBtn.style.fontFamily = 'ZCOOL QingKe HuangYou, cursive';
   startBtn.style.textShadow = '2px 2px 2px black'
-  startBtn.style.fontSize = '3rem';
+  startBtn.style.fontSize = '1.6rem';
   startBtn.style.border = '5px solid #23f502';
   startBtn.style.borderRadius = '7px';
-  startBtn.style.boxShadow = '2px 2px 2px black'
+  startBtn.style.backgroundColor = 'rgba(64,64,64,0.7)';
+  startBtn.style.boxShadow = '2px 2px 2px black';
   startBtn.style.padding = '10px 20px 10px 20px';
   startBtn.style.cursor = 'pointer';
+  startBtn.style.zIndex = '20';
   gameEngine.root.append(startBtn);
   startBtn.addEventListener('click', gameEngine.gameLoop);
 }
