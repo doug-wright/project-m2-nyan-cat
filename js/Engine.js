@@ -52,13 +52,13 @@ class Engine {
 
   gameLoop = () => {
     if (!this.gameRunning) {
-      createStartBtn();  // create the start game button
+      introScreen();
       this.gameRunning = true;  
     } else {
       // remove the start game button
-      const startBtn = document.querySelector('.start-btn');
-      startBtn.removeEventListener('click', gameEngine.gameLoop);
-      startBtn.style.display = 'none';
+      const introScreen = document.querySelector('.intro-screen');
+      introScreen.removeEventListener('click', gameEngine.gameLoop);
+      introScreen.style.display = 'none';
 
       if (this.countDown < 1) {
         sndMusic.play();
