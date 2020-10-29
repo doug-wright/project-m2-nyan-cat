@@ -86,7 +86,7 @@ const createStartBtn = () => {
   startBtn.innerHTML = 'Using the left and right arrow keys, avoid the enemy ships. \
     <p>Capture the yellow ship to obtain shields.</p> \
     <p>With shields up (indicated by a red outline around your ship) collide with \
-    enemy ships to collect bonus points. An alarm will sound when your shields are \
+    the enemy to collect bonus points. An alarm will sound when your shields are \
     about to run out.</p><p>You get a free life every 10,000 points.</p> \
     <div style="text-align: center;">CLICK HERE TO START</div>';
   startBtn.style.position = 'absolute';
