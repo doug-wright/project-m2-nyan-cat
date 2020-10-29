@@ -34,3 +34,15 @@ const SHIELDED_POINTS = 300;  // Bonus points for colliding with enemy with shei
 // COL_START as this equals the front edge of your ship.
 const COL_START = 380;
 const COL_END = 600;
+
+// preload the ships and explosion images
+const imageURL = ['./images/D7.png',
+                  './images/D7-shields.png',
+                  './images/enterprise.png',
+                  './images/enterprise-shields.png',
+                  './images/explosion.gif'];
+
+imageURL.forEach(url => {
+  const img = new Image();
+  img.src = url;
+});
