@@ -41,9 +41,9 @@ class Enemy {
 
     // We give it a src attribute to specify which image to display.
     if (this.shieldProvider) {
-      this.domElement.src = './images/D7-shields.png';
+      this.domElement.src = 'images/D7-shields.png';
     } else {
-      this.domElement.src = './images/D7.png';
+      this.domElement.src = 'images/D7.png';
     }
     
     // We modify the CSS style of the DOM node.

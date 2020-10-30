@@ -36,11 +36,11 @@ const COL_START = 380;
 const COL_END = 600;
 
 // preload the ships and explosion images
-const imageURL = ['./images/D7.png',
-                  './images/D7-shields.png',
-                  './images/enterprise.png',
-                  './images/enterprise-shields.png',
-                  './images/explosion.gif'];
+const imageURL = ['images/D7.png',
+                  'images/D7-shields.png',
+                  'images/enterprise.png',
+                  'images/enterprise-shields.png',
+                  'images/explosion.gif'];
 
 imageURL.forEach(url => {
   const img = new Image();

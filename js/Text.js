@@ -15,9 +15,7 @@ class Text {
     div.style.fontFamily = 'ZCOOL QingKe HuangYou, cursive';
     div.style.fontSize = size;
     div.style.zIndex = 2000;
-
     root.appendChild(div);
-
     this.domElement = div;
   }
 
