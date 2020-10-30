@@ -28,7 +28,7 @@ Several modifications were made to the original game:
 8. Modified the supplied Text.js code to place text within the game.
 9. Created an intro screen to describe how to play the game.
 10. Added back ground music and sound effects.
-11. Additional parameters are configurable via data.js like free lifes, how often shields are
+11. Additional parameters are configurable via data.js like free lives, how often shields are
 offered, how long shields last, bonus points and collision sensitivity.
 12. Configured the game board with increased width and number of enemies.
 

@@ -115,8 +115,10 @@ class Engine {
         // and return from the method (Why is the return statement important?)
         if (this.isPlayerDead()) {
           // change the player image to an explosion and play sound
+          this.player.domElement.style.visibility = 'hidden';
           this.player.domElement.src = 'images/explosion.gif';
           this.player.domElement.style.left = this.player.x - 60;
+          this.player.domElement.style.visibility = 'visible';
           sndExplosion.play();
 
           // check how many lives are remaining

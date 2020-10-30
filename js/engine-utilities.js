@@ -85,7 +85,7 @@ const introScreen = () => {
     <p>Capture the yellow ship to obtain shields.</p> \
     <p>With shields up (indicated by a red outline around your ship) collide with \
     the enemy to collect bonus points. An alarm will sound when your shields are \
-    about to run out.</p><p>You get a free life every 10,000 points.</p> \
+    about to run out.</p><p>You get a free life every ' + FREE_LIFE + ' points.</p> \
     <div style="text-align: center;">CLICK HERE TO START</div>';
   div.style.position = 'absolute';
   div.style.top = '125px';
