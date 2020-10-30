@@ -42,6 +42,9 @@ longer to execute by the browser than the style.left change.  At any rate, I've 
 methods to eliminate this with varying degrees of success. Maybe this will get fixed in
 version 2.0 :o)
 
+In Firefox on Linux the short sound made by the Enterprise as it moves does not play. Not sure
+about Windows.
+
 ### To play the game, follow this link:
 
 https://musing-nobel-0edd9a.netlify.app
