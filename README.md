@@ -4,9 +4,9 @@
 
 ## The game
 
-This game is called **Star Trek**. Not very imaginative, but it will do. The object of the
-game is to pilot the Starship Enterprise to avoid colliding with the Klingon D7 Class Battle
-Cruisers.
+This game is called **Star Trek**. Not very imaginative, but it will have to do. The object
+of the game is to pilot the Starship Enterprise to avoid colliding with the Klingon D7
+Class Battle Cruisers.
 
 ## Instructions
 
@@ -31,6 +31,16 @@ Several modifications were made to the original game:
 11. Additional parameters are configurable via data.js like free lives, how often shields are
 offered, how long shields last, bonus points and collision sensitivity.
 12. Configured the game board with increased width and number of enemies.
+
+## Known bugs
+
+Sometimes before the Enterprise explodes you see the image shift to the left briefly. This is
+because the explosion image, which gets loaded upon a collision, is wider than the Enterprise
+image so style.left needs to be adjusted so the explosion is centered on the Enterprise. It
+would appear that the order of DOM style changes cannot be predicted or the image load takes
+longer to execute by the browser than the style.left change.  At any rate, I've tried various
+methods to eliminate this with varying degrees of success. Maybe this will get fixed in
+version 2.0 :o)
 
 ### To play the game, follow this link:
 

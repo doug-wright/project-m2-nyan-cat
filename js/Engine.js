@@ -114,7 +114,8 @@ class Engine {
         // We check if the player is dead. If he is, we alert the user
         // and return from the method (Why is the return statement important?)
         if (this.isPlayerDead()) {
-          // change the player image to an explosion and play sound
+          // Change the player image to an explosion and play sound. There's probably
+          // a better way to do this, but it works for the most part.
           this.player.domElement.style.visibility = 'hidden';
           this.player.domElement.src = 'images/explosion.gif';
           this.player.domElement.style.left = this.player.x - 60;
