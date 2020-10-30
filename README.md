@@ -32,7 +32,7 @@ Several modifications were made to the original game:
 offered, how long shields last, bonus points and collision sensitivity.
 12. Configured the game board with increased width and number of enemies.
 
-## To play the game, follow this link:
+### To play the game, follow this link:
 
 https://musing-nobel-0edd9a.netlify.app
 
